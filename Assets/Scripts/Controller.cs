@@ -15,11 +15,11 @@ public class Controller : MonoBehaviour
     {
      if(Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += transform.forward * 0.1f;
+            transform.position += transform.forward * 0.05f;
         }
      else if(Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position -= transform.forward * 0.1f;           
+            transform.position -= transform.forward * 0.05f;           
         }
     }
 }
