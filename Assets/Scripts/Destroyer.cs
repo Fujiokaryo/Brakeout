@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
+
+    public int point;
     public GameObject masterObj;
     void Start()
     {
@@ -18,6 +20,8 @@ public class Destroyer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        FindObjectOfType<Score>().AddPoint(point);
+        
         masterObj.GetComponent<GameMaster>().boxNum--;
         Destroy(gameObject);
     }
