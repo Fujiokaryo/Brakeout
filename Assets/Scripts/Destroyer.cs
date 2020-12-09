@@ -7,22 +7,38 @@ public class Destroyer : MonoBehaviour
 
     public int point;
     public GameObject masterObj;
+
+    public int initHp;
+    private int currentHp;
+
+    public AudioClip hitSE;
+    public AudioClip destroySE;
     void Start()
     {
-        
+        this.currentHp = initHp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        FindObjectOfType<Score>().AddPoint(point);
-        
-        masterObj.GetComponent<GameMaster>().boxNum--;
-        Destroy(gameObject);
+
+        this.currentHp -= 1;
+
+        if(this.currentHp <= 0)
+        {
+            AudioSource.PlayClipAtPoint(destroySE, transform.position);
+
+            masterObj.GetComponent<GameMaster>().boxNum--;
+
+            FindObjectOfType<Score>().AddPoint(point);
+
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(hitSE, transform.position);
+        }
+      
     }
 }
